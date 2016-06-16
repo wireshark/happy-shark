@@ -3,8 +3,10 @@
 
 TEST_CASES = $(wildcard tests/*/*.pdml)
 
+TSHARK_EXECUTABLE?=tshark
+
 check_output = (cd $(dir $1) && \
-		tshark -T pdml -r $(subst .pdml,,$(notdir $1)) > $(notdir $2) 2>&1 && \
+		$(TSHARK_EXECUTABLE) -T pdml -r $(subst .pdml,,$(notdir $1)) > $(notdir $2) 2>&1 && \
 		xsltproc filter.xsl $(notdir $2)  | diff $(notdir $1) - ) 
 
 all: test
