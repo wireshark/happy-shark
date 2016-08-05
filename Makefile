@@ -17,6 +17,6 @@ all: test
 test: $(TEST_CASES:.pdml=.pdml.current)
 
 clean:
-	rm -f $(TEST_CASES:.pdml=.pdml.current)
+	@rm -f $(TEST_CASES:.pdml=.pdml.current)
 
 .PHONY: clean
