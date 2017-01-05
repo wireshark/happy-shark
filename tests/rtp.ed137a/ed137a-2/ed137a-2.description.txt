@@ -1,0 +1,5 @@
+
+RTP with ED-137A header extension.
+Traffic is between VCS (172.16.176.9) and TX unit of radio (172.16.176.41)
+There is silence plus signal transmission.
+
