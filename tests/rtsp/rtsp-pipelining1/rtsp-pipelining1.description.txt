@@ -1,0 +1,6 @@
+RTSP 1.0 with multiple messages in one packet.
+
+Traffic between client (172.16.31.65) and server (172.16.127.80).
+Packet #1 contains multiple requests.
+Packet #3 contains multiple responses.
+

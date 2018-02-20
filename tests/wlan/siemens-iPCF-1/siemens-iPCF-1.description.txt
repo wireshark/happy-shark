@@ -1,0 +1,20 @@
+Traffic carried by Siemens iPCF 802.11 wireless extension
+iPCF = industrial Point Coordination Function
+iPCF is used to carry PROFINET over wireless
+
+Capture contains ICMP (not PROFINET) as payload between 192.168.0.5 and 192.168.0.1.
+
+Address description:
+notebook - 00:0f:b0:c1:78:7f - 192.168.0.5
+cisco switch (management port) - f4:7f:35:a7:74:40 - 192.168.0.1
+siemens AP (server-ap, BSSID) - 00:1b:1b:3a:da:28 (note: MAC address printed on device is 00:1b:1b:3a:da:20)
+siemens AP (client-ap) - 00:1b:1b:92:ca:f0
+
+Connection diagram:
+notebook=src <-> client-ap <-> server-ap <-> siemens_sw <-> cisco_sw=dst
+Note: siemens_sw is not visible
+
+Content of capture:
+ICMP between notebook (src) and cisco switch management port (dst). 1392B is size of payload.
+Capture contain all packet - ICMP over iPCF and all related confirmations etc.
+

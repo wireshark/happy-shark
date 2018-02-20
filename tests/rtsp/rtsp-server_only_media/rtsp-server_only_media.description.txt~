@@ -1,0 +1,4 @@
+RTSP 1.0 with server_port only
+
+Traffic between client (172.16.31.65) and server (172.16.127.80). There are two sessions pipelined in one RTSP connection.
+

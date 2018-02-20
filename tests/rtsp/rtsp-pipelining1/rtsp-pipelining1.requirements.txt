@@ -1,0 +1,4 @@
+
+Packet #1 should be decoded as expected - 3 RTSP requests should be shown.
+Packet #3 should be decoded as expected - 2 RTSP responses should be shown.
+

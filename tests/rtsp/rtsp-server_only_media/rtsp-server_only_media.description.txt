@@ -1,0 +1,5 @@
+RTSP 1.0 with server_port only
+
+Traffic between client (172.16.31.65) and server (172.16.127.80). RTP media are transmitted from 172.16.31.66.
+There are two sessions pipelined in one RTSP connection - server advertise different port for each of it. RTP media are captured for each session too.
+

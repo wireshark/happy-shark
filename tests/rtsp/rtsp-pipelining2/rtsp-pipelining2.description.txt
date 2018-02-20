@@ -1,0 +1,8 @@
+RTSP 1.0 with multiple messages in one packet.
+
+Traffic between client (172.16.31.65) and server (172.16.127.80).
+Packet #1 contains multiple requests.
+Packet #3 contains one message and body with no Content-Type and Content-Length.
+
+Please note that body in #3 was created by manual modification of packet. It was created to test that dissector will handle it.
+
