@@ -1,0 +1,7 @@
+RTSP 1.0 with media in UDP
+
+172.16.31.253 is RTSP client, it's media are comming from 172.16.31.254
+172.16.31.155 is RTSP server
+
+Client transmits media in UDP.
+

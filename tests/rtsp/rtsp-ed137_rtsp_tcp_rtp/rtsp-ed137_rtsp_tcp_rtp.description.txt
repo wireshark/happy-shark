@@ -1,0 +1,7 @@
+RTSP 1.0 with media in TCP
+
+172.16.168.24 is RTSP client
+172.16.168.64 is RTSP server
+
+Client transmits media in TCP. Client adds XML metadata to RECORD/PAUSE messages.
+
