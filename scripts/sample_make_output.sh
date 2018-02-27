@@ -3,21 +3,37 @@
 TSHARK_EXECUTABLE="$1"
 SAMPLE_DIR="$2"
 TYPE="$3"
-REQ_VERSION="$4"
+VERBOSE="$4"
+REQ_VERSION="$5"
+
+OUTPUT=""
+
+echo_history () {
+  echo -ne "${OUTPUT} $*"
+  OUTPUT=""
+}
+
+echo_verbose () {
+  if [ "${VERBOSE}" == "yes" ]; then
+    echo -ne "$*"
+   else
+    OUTPUT="${OUTPUT} $*"
+  fi
+}
 
 ${TSHARK_EXECUTABLE} --version > /dev/null 2> /dev/null
 if [ "$?" != "0" ]; then
-    echo "Executable for tshark doesn't exists (${TSHARK_EXECUTABLE})"
+    echo_history "Executable for tshark doesn't exists (${TSHARK_EXECUTABLE})\n"
     exit 0
 fi
 
-echo "Creating output '${TYPE}' for ${SAMPLE_DIR}:"
+echo_verbose "Creating output '${TYPE}' for ${SAMPLE_DIR}:\n"
 FILE=`basename "${SAMPLE_DIR}"`
 
 TSHARK_VERSION=`${TSHARK_EXECUTABLE} --version | head -1 | cut -d' ' -f 3 | cut -d'.' -f1,2`
 if [ -n "${REQ_VERSION}" ]; then
     if [ "${REQ_VERSION}" != "${TSHARK_VERSION}" ]; then
-        echo "  FAILED, required tshark version do not match running version"
+        echo_history "  FAILED, required tshark version do not match running version\n"
         exit 1
     fi
 fi
@@ -29,7 +45,7 @@ if [ -f "${FILE}.pcap.gz" ]; then
 elif [ -f "${FILE}.pcapng.gz" ]; then
         FILE_PCAP="${FILE}.pcapng.gz"
 else
-    echo "  No sample for ${SAMPLE_DIR}"
+    echo_history "  No sample for ${SAMPLE_DIR}\n"
     exit 0
 fi
 
@@ -38,7 +54,7 @@ if [ -r "${FILE}.args" ]; then
     TSHARK_ARGS=`cat "${FILE}.args"`
 fi
 
-OUTPUT_FILE="${FILE}_${TSHARK_VERSION}.${TYPE}"
+OUTPUT_FILE="output/${FILE}_${TSHARK_VERSION}.${TYPE}"
 
 XTYPE=${TYPE}
 XARGS=
@@ -59,21 +75,21 @@ if [ ! -f "${OUTPUT_FILE}" -o ${FILE_PCAP} -nt ${OUTPUT_FILE} ]; then
             if [ "$?" -ne "0" ]; then
                 rm -f "${OUTPUT_FILE}.tmp"
                 rm -f "${OUTPUT_FILE}.tmp2"
-                echo "  FAILED, file ${SAMPLE_DIR}/${OUTPUT_FILE}"
+                echo_history "  FAILED, file ${SAMPLE_DIR}/${OUTPUT_FILE}\n"
                 exit 1
             fi
             rm -f "${OUTPUT_FILE}.tmp2"
         fi
         mv "${OUTPUT_FILE}.tmp" "${OUTPUT_FILE}"
-        echo "  OK, file ${SAMPLE_DIR}/${OUTPUT_FILE}"
+        echo_history "  OK, file ${SAMPLE_DIR}/${OUTPUT_FILE}\n"
         exit 0
     else
         rm -f "${OUTPUT_FILE}.tmp"
-        echo "  FAILED, file ${SAMPLE_DIR}/${OUTPUT_FILE}"
+        echo_history "  FAILED, file ${SAMPLE_DIR}/${OUTPUT_FILE}\n"
         exit 1
     fi
 else
-    echo "  SKIPPED, already exists and is up to date (${SAMPLE_DIR}/${OUTPUT_FILE})"
+    echo_verbose "  SKIPPED, already exists and is up to date (${SAMPLE_DIR}/${OUTPUT_FILE})\n"
     exit 0
 fi
 

@@ -3,9 +3,19 @@
 TSHARK_EXECUTABLE="$1"
 FILE="$2"
 TYPE="$3"
+VERBOSE="$4"
+TEST_FAIL_FIRST="$5"
 shift
 shift
 shift
+
+exit_fail () {
+  if [ "${TEST_FAIL_FIRST}" == "yes" ]; then
+    exit $1
+   else
+    exit 0
+  fi
+}
 
 ${TSHARK_EXECUTABLE} --version > /dev/null 2> /dev/null
 if [ "$?" != "0" ]; then
@@ -14,6 +24,8 @@ if [ "$?" != "0" ]; then
 fi
 
 DIR=`dirname "${FILE}"`
+FILENAME=`basename "${FILE}"`
+OUTFILE=${DIR}/output/${FILENAME}
 
 echo -n "Processing ${FILE}.${TYPE}: "
 
@@ -31,7 +43,7 @@ elif [ -f "${FILE}.pcapng.gz" ]; then
         FILE_PCAP="${FILE}.pcapng.gz"
 else
     echo "  No sample for ${FILE}"
-    exit 0
+    exit_fail 0
 fi
 
 TSHARK_ARGS=
@@ -39,11 +51,11 @@ if [ -r "${FILE}.args" ]; then
     TSHARK_ARGS=`cat "${FILE}.args"`
 fi
 
-OUTPUT_FILE="${FILE}.${TYPE}.current"
+OUTPUT_FILE="${OUTFILE}.${TYPE}.current"
 
 LAST_VER=
 for x in $@; do
-    if [ -f "${FILE}_${x}.${TYPE}" ]; then
+    if [ -f "${OUTFILE}_${x}.${TYPE}" ]; then
         LAST_VER=$x
     fi
     if [ "${x}" == "${TSHARK_VERSION}" ]; then
@@ -51,7 +63,7 @@ for x in $@; do
     fi
 done
 
-BASE_FILE="${FILE}_${LAST_VER}.${TYPE}"
+BASE_FILE="${OUTFILE}_${LAST_VER}.${TYPE}"
 
 if [ ! -f "${BASE_FILE}" ]; then
     echo "  No stored output up to version ${TSHARK_VERSION}."
@@ -72,31 +84,39 @@ if [ "$?" -eq "0" ]; then
         xsltproc "${DIR}"/filter.xsl "${OUTPUT_FILE}.tmp2" > "${OUTPUT_FILE}.tmp"
         if [ "$?" -ne "0" ]; then
             echo "  FAILED (${LAST_VER}/${TSHARK_VERSION})"
-            exit 1
+            exit_fail 1
         fi
 
-        diff "${BASE_FILE}" "${OUTPUT_FILE}.tmp"
+        if [ "${VERBOSE}" == "yes" ]; then
+          diff "${BASE_FILE}" "${OUTPUT_FILE}.tmp"
+         else
+          diff -q "${BASE_FILE}" "${OUTPUT_FILE}.tmp"
+        fi
         if [ "$?" -ne "0" ]; then
             echo "  FAILED (${LAST_VER}/${TSHARK_VERSION})"
-            exit 1
+            exit_fail 1
         fi
     else
         mv "${OUTPUT_FILE}.tmp2" "${OUTPUT_FILE}.tmp"
     fi
 
-    diff "${BASE_FILE}" "${OUTPUT_FILE}.tmp"
+    if [ "${VERBOSE}" == "yes" ]; then
+      diff "${BASE_FILE}" "${OUTPUT_FILE}.tmp"
+     else
+      diff -q "${BASE_FILE}" "${OUTPUT_FILE}.tmp"
+    fi
     if [ "$?" -ne "0" ]; then
         echo "  FAILED (${LAST_VER}/${TSHARK_VERSION})"
-        exit 1
+        exit_fail 1
     fi
 
     rm -f "${OUTPUT_FILE}.tmp2"
     mv "${OUTPUT_FILE}.tmp" "${OUTPUT_FILE}"
     echo "  OK (${LAST_VER}/${TSHARK_VERSION})"
-    exit 0
+    exit_fail 0
 else
     echo "  FAILED (${LAST_VER}/${TSHARK_VERSION})"
-    exit 1
+    exit_fail 1
 fi
 
 #*
