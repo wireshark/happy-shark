@@ -4,8 +4,12 @@
 .DEFAULT_GOAL := help
 .SECONDEXPANSION:
 
-# Set home dir if it is not set
-HOME?=$(mktemp -d)
+# Set home dir to empty dir
+ifneq ("$(wildcard /tmp)","")
+  HOME=/tmp
+ else
+  HOME?=$(mktemp -d)
+endif
 
 # List all available test directories
 TEST_CASE_DIRS=$(wildcard tests/*/*)
@@ -117,5 +121,5 @@ help:
 
 all: verify_repository outputs tests
 
-#.PHONY: all
+.PHONY: all maintainer-clean clean outputs verify_repository tests
 
