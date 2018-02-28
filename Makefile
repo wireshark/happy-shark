@@ -30,22 +30,22 @@ TSHARK_EXECUTABLE?=tshark
 TSHARK_VERSION=$(shell $(TSHARK_EXECUTABLE) --version | head -1 | cut -d' ' -f 3 | cut -d'.' -f1,2)
 
 VERBOSE?=no
-TEST_FAIL_FIRST?=yes
+TEST_FAIL_ON_ERROR?=yes
 
 %.pdml1.current: TESTDIR = $(patsubst %/,%,$(dir $(patsubst %/,%,$(dir $*))))
 %.pdml1.current: TESTNAME = $(notdir $*)
 %.pdml1.current: $$(dir $$(subst /output,,$$@))/filter.xsl $$(wildcard $$(dir $$(subst /output,,$$@))/*.pcap*.gz)
-	@./scripts/sample_test.sh "$(TSHARK_EXECUTABLE)" "$(TESTDIR)/$(TESTNAME)" pdml1 $(VERBOSE) $(TEST_FAIL_FIRST) $(SELECTED_VERSIONS)
+	@./scripts/sample_test.sh "$(TSHARK_EXECUTABLE)" "$(TESTDIR)/$(TESTNAME)" pdml1 $(VERBOSE) $(TEST_FAIL_ON_ERROR) $(SELECTED_VERSIONS)
 
 %.pdml2.current: TESTDIR = $(patsubst %/,%,$(dir $(patsubst %/,%,$(dir $*))))
 %.pdml2.current: TESTNAME = $(notdir $*)
 %.pdml2.current: $$(dir $$(subst /output,,$$@))/filter.xsl $$(wildcard $$(dir $$(subst /output,,$$@))/*.pcap*.gz)
-	@./scripts/sample_test.sh "$(TSHARK_EXECUTABLE)" "$(TESTDIR)/$(TESTNAME)" pdml2 $(VERBOSE) $(TEST_FAIL_FIRST) $(SELECTED_VERSIONS)
+	@./scripts/sample_test.sh "$(TSHARK_EXECUTABLE)" "$(TESTDIR)/$(TESTNAME)" pdml2 $(VERBOSE) $(TEST_FAIL_ON_ERROR) $(SELECTED_VERSIONS)
 
 %.text.current: TESTDIR = $(patsubst %/,%,$(dir $(patsubst %/,%,$(dir $*))))
 %.text.current: TESTNAME = $(notdir $*)
 %.text.current: $$(dir $$(subst /output,,$$@))/filter.xsl $$(wildcard $$(dir $$(subst /output,,$$@))/*.pcap*.gz)
-	@./scripts/sample_test.sh "$(TSHARK_EXECUTABLE)" "$(TESTDIR)/$(TESTNAME)" text $(VERBOSE) $(TEST_FAIL_FIRST) $(SELECTED_VERSIONS)
+	@./scripts/sample_test.sh "$(TSHARK_EXECUTABLE)" "$(TESTDIR)/$(TESTNAME)" text $(VERBOSE) $(TEST_FAIL_ON_ERROR) $(SELECTED_VERSIONS)
 
 %.pdml1: TESTDIR = $(patsubst %/,%,$(dir $(patsubst %/,%,$(dir $*))))
 %.pdml1: $$(dir $$(subst /output,,$$@))/filter.xsl $$(wildcard $$(dir $$(subst /output,,$$@))/*.pcap*.gz)
@@ -105,13 +105,13 @@ help:
 	@echo "make outputs            create missing output files (.test, .pdml1, .pdml2)"
 	@echo "make verify_repository  verifies whether each test is equipped with required files"
 	@echo "make tests              test each sample output with current wireshark"
-	@echo "make all                do verify_repository outputs tests in row
+	@echo "make all                do verify_repository outputs tests in row"
 	@echo ""
 	@echo "you can use variables:"
 	@echo "TSHARK_EXECUTABLE=/path/to/tshark"
 	@echo "VERSION=2.0"
 	@echo "VERBOSE=yes"
-	@echo "TEST_FAIL_FIRST=no"
+	@echo "TEST_FAIL_ON_ERROR=no"
 	@echo "e.g. make outputs TSHARK_EXECUTABLE=/path/to/tshark  creates outputs with specified tshark and with its version"
 	@echo "e.g. make tests VERSION=2.0  test samples with current tshark, but compares its outputs with specified version"
 

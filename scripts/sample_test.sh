@@ -4,7 +4,7 @@ TSHARK_EXECUTABLE="$1"
 FILE="$2"
 TYPE="$3"
 VERBOSE="$4"
-TEST_FAIL_FIRST="$5"
+TEST_FAIL_ON_ERROR="$5"
 shift
 shift
 shift
@@ -12,7 +12,7 @@ shift
 shift
 
 exit_fail () {
-  if [ "${TEST_FAIL_FIRST}" == "yes" ]; then
+  if [ "${TEST_FAIL_ON_ERROR}" == "yes" ]; then
     exit $1
    else
     exit 0
