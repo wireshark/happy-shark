@@ -3,6 +3,8 @@
 SAMPLE_DIR="$1"
 VERBOSE="$2"
 shift
+shift
+
 CHECKED_VERSIONS=$@
 
 OUTPUT=""

@@ -8,6 +8,8 @@ TEST_FAIL_FIRST="$5"
 shift
 shift
 shift
+shift
+shift
 
 exit_fail () {
   if [ "${TEST_FAIL_FIRST}" == "yes" ]; then

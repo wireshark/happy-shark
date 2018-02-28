@@ -66,31 +66,26 @@ elif [ "${TYPE}" == "pdml2" ]; then
     XARGS=-2
 fi
 
-if [ ! -f "${OUTPUT_FILE}" -o ${FILE_PCAP} -nt ${OUTPUT_FILE} ]; then
-    "${TSHARK_EXECUTABLE}" $TSHARK_ARGS -T ${XTYPE} ${XARGS} -r "${FILE_PCAP}" > "${OUTPUT_FILE}".tmp
-    if [ "$?" -eq "0" ]; then
-        if [ "${XTYPE}" == "pdml" ]; then
-            mv -f "${OUTPUT_FILE}.tmp" "${OUTPUT_FILE}.tmp2"
-            xsltproc filter.xsl "${OUTPUT_FILE}.tmp2" > "${OUTPUT_FILE}.tmp"
-            if [ "$?" -ne "0" ]; then
-                rm -f "${OUTPUT_FILE}.tmp"
-                rm -f "${OUTPUT_FILE}.tmp2"
-                echo_history "  FAILED, file ${SAMPLE_DIR}/${OUTPUT_FILE}\n"
-                exit 1
-            fi
+"${TSHARK_EXECUTABLE}" $TSHARK_ARGS -T ${XTYPE} ${XARGS} -r "${FILE_PCAP}" > "${OUTPUT_FILE}".tmp
+if [ "$?" -eq "0" ]; then
+    if [ "${XTYPE}" == "pdml" ]; then
+        mv -f "${OUTPUT_FILE}.tmp" "${OUTPUT_FILE}.tmp2"
+        xsltproc filter.xsl "${OUTPUT_FILE}.tmp2" > "${OUTPUT_FILE}.tmp"
+        if [ "$?" -ne "0" ]; then
+            rm -f "${OUTPUT_FILE}.tmp"
             rm -f "${OUTPUT_FILE}.tmp2"
+            echo_history "  FAILED, file ${SAMPLE_DIR}/${OUTPUT_FILE}\n"
+            exit 1
         fi
-        mv "${OUTPUT_FILE}.tmp" "${OUTPUT_FILE}"
-        echo_history "  OK, file ${SAMPLE_DIR}/${OUTPUT_FILE}\n"
-        exit 0
-    else
-        rm -f "${OUTPUT_FILE}.tmp"
-        echo_history "  FAILED, file ${SAMPLE_DIR}/${OUTPUT_FILE}\n"
-        exit 1
+        rm -f "${OUTPUT_FILE}.tmp2"
     fi
-else
-    echo_verbose "  SKIPPED, already exists and is up to date (${SAMPLE_DIR}/${OUTPUT_FILE})\n"
+    mv "${OUTPUT_FILE}.tmp" "${OUTPUT_FILE}"
+    echo_history "  OK, file ${SAMPLE_DIR}/${OUTPUT_FILE}\n"
     exit 0
+else
+    rm -f "${OUTPUT_FILE}.tmp"
+    echo_history "  FAILED, file ${SAMPLE_DIR}/${OUTPUT_FILE}\n"
+    exit 1
 fi
 
 #*
