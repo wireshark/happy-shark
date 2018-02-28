@@ -5,7 +5,7 @@ and a collection of capture files.
 
 Running tests
 -------------
-Simply invoke `make test` or `make test -j4` for more parallelism.
+Simply invoke `make tests` or `make tests -j4` for more parallelism.
 
 Adding a new test
 -----------------
@@ -37,15 +37,19 @@ Options and variables to run framework
 SUPPORTED_VERSIONS - list of versions checked during make or make outputs, when not specified, default in Makefile is used
 VERSION - version used for make or make outputs, when not specified, tshark version is used
 TSHARK_EXECUTABLE - path to tshark, when not specified, tshark in PATH is used
+VERBOSE=yes - produce more verbose messages during processing
+TEST_FAIL_ON_ERROR=no - do not stop on first error during tests
 
-make test - run tests, compare output of latest stored .pdml and .text
-make VERSION=2.0 test - same as above, compare output with version 2.0 or previous
+make tests - run tests, compare output of latest stored .pdml and .text
+make tests VERSION=2.0 - same as above, compare output with version 2.0 or previous
 make test_pdml or make test_text - run tests for PDML or TEXT output only
 make verify_repository - check whether each sample contains required files for at least one of checked versions
 make verify_repository VERSION=2.0 - same above, check is made for specified version only
 make outputs - generate .pdml and .text output for samples where files are missing, version is derived from version of used tshark
 make outputs TSHARK_EXECUTABLE=path/tshark - same as above, but you can determine used tshark
 make clean - removes temporary files after make test
+make maintainer-clean - removes temporary files including editor backup files
+make all - do verify_repository outputs tests in row
 
 Architecture
 ------------
