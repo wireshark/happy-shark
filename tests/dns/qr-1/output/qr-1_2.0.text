@@ -1,0 +1,2 @@
+  1   0.000000 192.168.22.101 -> 8.8.8.8      DNS 85 Standard query 0xe65d A www.google.com OPT
+  2   0.021423      8.8.8.8 -> 192.168.22.101 DNS 101 Standard query response 0xe65d A www.google.com A 172.217.16.164 OPT

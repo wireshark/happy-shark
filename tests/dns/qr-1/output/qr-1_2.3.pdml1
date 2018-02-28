@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<pdml>
+  <packet>
+    <proto name="dns" showname="Domain Name System (query)" size="43" pos="42">
+      <field name="dns.id" showname="Transaction ID: 0xe65d" size="2" pos="42" show="0x0000e65d" value="e65d"/>
+      <field name="dns.flags" showname="Flags: 0x0120 Standard query" size="2" pos="44" show="0x00000120" value="0120">
+        <field name="dns.flags.response" showname="0... .... .... .... = Response: Message is a query" size="2" pos="44" show="0" value="0" unmaskedvalue="0120"/>
+        <field name="dns.flags.opcode" showname=".000 0... .... .... = Opcode: Standard query (0)" size="2" pos="44" show="0" value="0" unmaskedvalue="0120"/>
+        <field name="dns.flags.truncated" showname=".... ..0. .... .... = Truncated: Message is not truncated" size="2" pos="44" show="0" value="0" unmaskedvalue="0120"/>
+        <field name="dns.flags.recdesired" showname=".... ...1 .... .... = Recursion desired: Do query recursively" size="2" pos="44" show="1" value="1" unmaskedvalue="0120"/>
+        <field name="dns.flags.z" showname=".... .... .0.. .... = Z: reserved (0)" size="2" pos="44" show="0" value="0" unmaskedvalue="0120"/>
+        <field name="dns.flags.authenticated" showname=".... .... ..1. .... = AD bit: Set" size="2" pos="44" show="1" value="1" unmaskedvalue="0120"/>
+        <field name="dns.flags.checkdisable" showname=".... .... ...0 .... = Non-authenticated data: Unacceptable" size="2" pos="44" show="0" value="0" unmaskedvalue="0120"/>
+      </field>
+      <field name="dns.count.queries" showname="Questions: 1" size="2" pos="46" show="1" value="0001"/>
+      <field name="dns.count.answers" showname="Answer RRs: 0" size="2" pos="48" show="0" value="0000"/>
+      <field name="dns.count.auth_rr" showname="Authority RRs: 0" size="2" pos="50" show="0" value="0000"/>
+      <field name="dns.count.add_rr" showname="Additional RRs: 1" size="2" pos="52" show="1" value="0001"/>
+      <field name="" show="Queries" size="20" pos="54" value="0377777706676f6f676c6503636f6d0000010001">
+        <field name="" show="www.google.com: type A, class IN" size="20" pos="54" value="0377777706676f6f676c6503636f6d0000010001">
+          <field name="dns.qry.name" showname="Name: www.google.com" size="16" pos="54" show="www.google.com" value="0377777706676f6f676c6503636f6d00"/>
+          <field name="dns.qry.name.len" showname="Name Length: 14" size="16" pos="54" show="14" value="0377777706676f6f676c6503636f6d00"/>
+          <field name="dns.count.labels" showname="Label Count: 3" size="16" pos="54" show="3" value="0377777706676f6f676c6503636f6d00"/>
+          <field name="dns.qry.type" showname="Type: A (Host Address) (1)" size="2" pos="70" show="1" value="0001"/>
+          <field name="dns.qry.class" showname="Class: IN (0x0001)" size="2" pos="72" show="0x00000001" value="0001"/>
+        </field>
+      </field>
+      <field name="" show="Additional records" size="11" pos="74" value="0000291000000000000000">
+        <field name="" show="&lt;Root&gt;: type OPT" size="11" pos="74" value="0000291000000000000000">
+          <field name="dns.resp.name" showname="Name: &lt;Root&gt;" size="1" pos="74" show="&lt;Root&gt;" value="00"/>
+          <field name="dns.resp.type" showname="Type: OPT (41)" size="2" pos="75" show="41" value="0029"/>
+          <field name="dns.rr.udp_payload_size" showname="UDP payload size: 4096" size="2" pos="77" show="4096" value="1000"/>
+          <field name="dns.resp.ext_rcode" showname="Higher bits in extended RCODE: 0x00" size="1" pos="79" show="0x00000000" value="00"/>
+          <field name="dns.resp.edns0_version" showname="EDNS0 version: 0" size="1" pos="80" show="0" value="00"/>
+          <field name="dns.resp.z" showname="Z: 0x0000" size="2" pos="81" show="0x00000000" value="0000">
+            <field name="dns.resp.z.do" showname="0... .... .... .... = DO bit: Cannot handle DNSSEC security RRs" size="2" pos="81" show="0" value="0" unmaskedvalue="0000"/>
+            <field name="dns.resp.z.reserved" showname=".000 0000 0000 0000 = Reserved: 0x0000" size="2" pos="81" show="0x00000000" value="0" unmaskedvalue="0000"/>
+          </field>
+          <field name="dns.resp.len" showname="Data length: 0" size="2" pos="83" show="0" value="0000"/>
+        </field>
+      </field>
+    </proto>
+  </packet>
+  <packet>
+    <proto name="dns" showname="Domain Name System (response)" size="59" pos="42">
+      <field name="dns.response_to" showname="Request In: 1" size="0" pos="42" show="1"/>
+      <field name="dns.time" showname="Time: 0.021423000 seconds" size="0" pos="42" show="0.021423000"/>
+      <field name="dns.id" showname="Transaction ID: 0xe65d" size="2" pos="42" show="0x0000e65d" value="e65d"/>
+      <field name="dns.flags" showname="Flags: 0x8180 Standard query response, No error" size="2" pos="44" show="0x00008180" value="8180">
+        <field name="dns.flags.response" showname="1... .... .... .... = Response: Message is a response" size="2" pos="44" show="1" value="1" unmaskedvalue="8180"/>
+        <field name="dns.flags.opcode" showname=".000 0... .... .... = Opcode: Standard query (0)" size="2" pos="44" show="0" value="0" unmaskedvalue="8180"/>
+        <field name="dns.flags.authoritative" showname=".... .0.. .... .... = Authoritative: Server is not an authority for domain" size="2" pos="44" show="0" value="0" unmaskedvalue="8180"/>
+        <field name="dns.flags.truncated" showname=".... ..0. .... .... = Truncated: Message is not truncated" size="2" pos="44" show="0" value="0" unmaskedvalue="8180"/>
+        <field name="dns.flags.recdesired" showname=".... ...1 .... .... = Recursion desired: Do query recursively" size="2" pos="44" show="1" value="1" unmaskedvalue="8180"/>
+        <field name="dns.flags.recavail" showname=".... .... 1... .... = Recursion available: Server can do recursive queries" size="2" pos="44" show="1" value="1" unmaskedvalue="8180"/>
+        <field name="dns.flags.z" showname=".... .... .0.. .... = Z: reserved (0)" size="2" pos="44" show="0" value="0" unmaskedvalue="8180"/>
+        <field name="dns.flags.authenticated" showname=".... .... ..0. .... = Answer authenticated: Answer/authority portion was not authenticated by the server" size="2" pos="44" show="0" value="0" unmaskedvalue="8180"/>
+        <field name="dns.flags.checkdisable" showname=".... .... ...0 .... = Non-authenticated data: Unacceptable" size="2" pos="44" show="0" value="0" unmaskedvalue="8180"/>
+        <field name="dns.flags.rcode" showname=".... .... .... 0000 = Reply code: No error (0)" size="2" pos="44" show="0" value="0" unmaskedvalue="8180"/>
+      </field>
+      <field name="dns.count.queries" showname="Questions: 1" size="2" pos="46" show="1" value="0001"/>
+      <field name="dns.count.answers" showname="Answer RRs: 1" size="2" pos="48" show="1" value="0001"/>
+      <field name="dns.count.auth_rr" showname="Authority RRs: 0" size="2" pos="50" show="0" value="0000"/>
+      <field name="dns.count.add_rr" showname="Additional RRs: 1" size="2" pos="52" show="1" value="0001"/>
+      <field name="" show="Queries" size="20" pos="54" value="0377777706676f6f676c6503636f6d0000010001">
+        <field name="" show="www.google.com: type A, class IN" size="20" pos="54" value="0377777706676f6f676c6503636f6d0000010001">
+          <field name="dns.qry.name" showname="Name: www.google.com" size="16" pos="54" show="www.google.com" value="0377777706676f6f676c6503636f6d00"/>
+          <field name="dns.qry.name.len" showname="Name Length: 14" size="16" pos="54" show="14" value="0377777706676f6f676c6503636f6d00"/>
+          <field name="dns.count.labels" showname="Label Count: 3" size="16" pos="54" show="3" value="0377777706676f6f676c6503636f6d00"/>
+          <field name="dns.qry.type" showname="Type: A (Host Address) (1)" size="2" pos="70" show="1" value="0001"/>
+          <field name="dns.qry.class" showname="Class: IN (0x0001)" size="2" pos="72" show="0x00000001" value="0001"/>
+        </field>
+      </field>
+      <field name="" show="Answers" size="16" pos="74" value="c00c000100010000012b0004acd910a4">
+        <field name="" show="www.google.com: type A, class IN, addr 172.217.16.164" size="16" pos="74" value="c00c000100010000012b0004acd910a4">
+          <field name="dns.resp.name" showname="Name: www.google.com" size="2" pos="74" show="www.google.com" value="c00c"/>
+          <field name="dns.resp.type" showname="Type: A (Host Address) (1)" size="2" pos="76" show="1" value="0001"/>
+          <field name="dns.resp.class" showname="Class: IN (0x0001)" size="2" pos="78" show="0x00000001" value="0001"/>
+          <field name="dns.resp.ttl" showname="Time to live: 299" size="4" pos="80" show="299" value="0000012b"/>
+          <field name="dns.resp.len" showname="Data length: 4" size="2" pos="84" show="4" value="0004"/>
+          <field name="dns.a" showname="Address: 172.217.16.164" size="4" pos="86" show="172.217.16.164" value="acd910a4"/>
+        </field>
+      </field>
+      <field name="" show="Additional records" size="11" pos="90" value="0000290200000000000000">
+        <field name="" show="&lt;Root&gt;: type OPT" size="11" pos="90" value="0000290200000000000000">
+          <field name="dns.resp.name" showname="Name: &lt;Root&gt;" size="1" pos="90" show="&lt;Root&gt;" value="00"/>
+          <field name="dns.resp.type" showname="Type: OPT (41)" size="2" pos="91" show="41" value="0029"/>
+          <field name="dns.rr.udp_payload_size" showname="UDP payload size: 512" size="2" pos="93" show="512" value="0200"/>
+          <field name="dns.resp.ext_rcode" showname="Higher bits in extended RCODE: 0x00" size="1" pos="95" show="0x00000000" value="00"/>
+          <field name="dns.resp.edns0_version" showname="EDNS0 version: 0" size="1" pos="96" show="0" value="00"/>
+          <field name="dns.resp.z" showname="Z: 0x0000" size="2" pos="97" show="0x00000000" value="0000">
+            <field name="dns.resp.z.do" showname="0... .... .... .... = DO bit: Cannot handle DNSSEC security RRs" size="2" pos="97" show="0" value="0" unmaskedvalue="0000"/>
+            <field name="dns.resp.z.reserved" showname=".000 0000 0000 0000 = Reserved: 0x0000" size="2" pos="97" show="0x00000000" value="0" unmaskedvalue="0000"/>
+          </field>
+          <field name="dns.resp.len" showname="Data length: 0" size="2" pos="99" show="0" value="0000"/>
+        </field>
+      </field>
+    </proto>
+  </packet>
+</pdml>

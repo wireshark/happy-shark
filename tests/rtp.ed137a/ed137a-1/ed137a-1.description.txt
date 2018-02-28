@@ -1,0 +1,5 @@
+
+RTP with ED-137A header extension.
+Traffic is between RX unit of radio (172.16.176.24) and VCS (172.16.176.11).
+There is silence plus received signal. Radio provides information about signal strength in SQI element measured with RSSI method.
+

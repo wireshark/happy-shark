@@ -1,0 +1,7 @@
+
+Wireshark should decode iPCF extension and decode the rest of packet as Ethernet frame
+- iPCF headers should be incorporated into IEEE 802.11 element
+
+Problem:
+- there is no description of iPCF items available
+

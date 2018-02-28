@@ -1,0 +1,3 @@
+
+RTP packets should be decoded as RTP - port should be decoded from RTSP.
+

@@ -1,0 +1,51 @@
+1) Won't be good idea to ask for e.g. <sample>.description.txt and
+<sample>.specification.txt for each sample?
+=> done
+
+2) Won't be good idea to allow skip a sample from automatic testing
+(because it is for GUI demonstration)?
+=> <sample>.no_pdml => done
+=> <sample>.no_txt => done
+
+3) There should be easy way how to describe which wireshark version
+processed stored PDML file.
+Probably different outputs should be stored for main branches (2.0, 2.2,
+...). It is obvious that each version of wireshark will change (improve)
+some outputs. Therefore older release will not be able to process it
+correctly (PDML diff will fail).
+I think that without output version you can't run regression tests
+automatically.
+=> <FILE>_<VERSION>.pdml should be created => done
+=> <FILE>_<VERSION>.text should be created => done
+=> output is validated to version of used tshark or older version => done
+
+4) There should be easy way how to run custom wireshark version without
+modifying Makefile. I have multiple versions for testing. I think
+environment variable solve it.
+=> done
+
+5) There should be easy way how to describe which filter should be used
+for preprocessing PDML. Now only filter.xsl is used.
+=> filter.xsl in directory with sample is used => done
+
+6) Rules must be written.
+
+7) There should be a procedure which checks whether repository/new sample
+contains expected information. Something like git review procedure for
+wireshark source/gerrit.
+=> make verify_repository
+
+8) Run -T text and -T pdml
+=> done
+
+9) It should be possible to set parameters for tshark run (e.g. decode as).
+=> optional file <file>.args => done
+
+---------------------------
+
+There are two levels of directory structure in tests/. It looks like <PROTO>/<sample_description>. First level is name of protocol which is tested. Second level is name/description of sample.
+Protocol name shall be name of procotol which is going to be tested. The easiest way is to name is same way as display filter in wireshark names it - including upper layer protocols (e.g. rtp or rtp.ed137a).
+Name of test depends on author, but should somehow describe the tested subject. When expected description (directory) is already there, add number to it (e.g. dns, dns-1, dns-2).
+
+Sample file should be stored as .pcap.gz or .pcapng.gz.
+

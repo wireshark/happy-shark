@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<pdml>
+  <packet>
+    <proto name="dns" showname="Domain Name System (query)" size="32" pos="150">
+      <field name="dns.id" showname="Transaction ID: 0x4301" size="2" pos="150" show="0x00004301" value="4301"/>
+      <field name="dns.flags" showname="Flags: 0x0100 Standard query" size="2" pos="152" show="0x00000100" value="0100">
+        <field name="dns.flags.response" showname="0... .... .... .... = Response: Message is a query" size="2" pos="152" show="0" value="0" unmaskedvalue="0100"/>
+        <field name="dns.flags.opcode" showname=".000 0... .... .... = Opcode: Standard query (0)" size="2" pos="152" show="0" value="0" unmaskedvalue="0100"/>
+        <field name="dns.flags.truncated" showname=".... ..0. .... .... = Truncated: Message is not truncated" size="2" pos="152" show="0" value="0" unmaskedvalue="0100"/>
+        <field name="dns.flags.recdesired" showname=".... ...1 .... .... = Recursion desired: Do query recursively" size="2" pos="152" show="1" value="1" unmaskedvalue="0100"/>
+        <field name="dns.flags.z" showname=".... .... .0.. .... = Z: reserved (0)" size="2" pos="152" show="0" value="0" unmaskedvalue="0100"/>
+        <field name="dns.flags.checkdisable" showname=".... .... ...0 .... = Non-authenticated data: Unacceptable" size="2" pos="152" show="0" value="0" unmaskedvalue="0100"/>
+      </field>
+      <field name="dns.count.queries" showname="Questions: 1" size="2" pos="154" show="1" value="0001"/>
+      <field name="dns.count.answers" showname="Answer RRs: 0" size="2" pos="156" show="0" value="0000"/>
+      <field name="dns.count.auth_rr" showname="Authority RRs: 0" size="2" pos="158" show="0" value="0000"/>
+      <field name="dns.count.add_rr" showname="Additional RRs: 0" size="2" pos="160" show="0" value="0000"/>
+      <field name="" show="Queries" size="20" pos="162" value="02696e016d057961686f6f03636f6d0000010001">
+        <field name="" show="in.m.yahoo.com: type A, class IN" size="20" pos="162" value="02696e016d057961686f6f03636f6d0000010001">
+          <field name="dns.qry.name" showname="Name: in.m.yahoo.com" size="16" pos="162" show="in.m.yahoo.com" value="02696e016d057961686f6f03636f6d00"/>
+          <field name="dns.qry.name.len" showname="Name Length: 14" size="16" pos="162" show="14" value="02696e016d057961686f6f03636f6d00"/>
+          <field name="dns.count.labels" showname="Label Count: 4" size="16" pos="162" show="4" value="02696e016d057961686f6f03636f6d00"/>
+          <field name="dns.qry.type" showname="Type: A (Host Address) (1)" size="2" pos="178" show="1" value="0001"/>
+          <field name="dns.qry.class" showname="Class: IN (0x0001)" size="2" pos="180" show="0x00000001" value="0001"/>
+        </field>
+      </field>
+    </proto>
+  </packet>
+</pdml>

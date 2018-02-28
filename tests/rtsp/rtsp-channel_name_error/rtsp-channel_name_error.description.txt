@@ -1,0 +1,7 @@
+RTSP 1.0, client asks recording for nonexisting channel
+
+172.16.31.65 is client
+172.16.127.80 is server
+
+client names channel in SDP attribute u= in packet #3
+
