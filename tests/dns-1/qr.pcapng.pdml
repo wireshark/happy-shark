@@ -43,8 +43,6 @@
   </packet>
   <packet>
     <proto name="dns" showname="Domain Name System (response)" size="59" pos="42">
-      <field name="dns.response_to" showname="Request In: 1" size="0" pos="42" show="1"/>
-      <field name="dns.time" showname="Time: 0.021423000 seconds" size="0" pos="42" show="0.021423000"/>
       <field name="dns.id" showname="Transaction ID: 0xe65d" size="2" pos="42" show="0x0000e65d" value="e65d"/>
       <field name="dns.flags" showname="Flags: 0x8180 Standard query response, No error" size="2" pos="44" show="0x00008180" value="8180">
         <field name="dns.flags.response" showname="1... .... .... .... = Response: Message is a response" size="2" pos="44" show="1" value="1" unmaskedvalue="8180"/>
@@ -95,6 +93,8 @@
           <field name="dns.resp.len" showname="Data length: 0" size="2" pos="99" show="0" value="0000"/>
         </field>
       </field>
+      <field name="dns.response_to" showname="Request In: 1" size="0" pos="42" show="1"/>
+      <field name="dns.time" showname="Time: 0.021423000 seconds" size="0" pos="42" show="0.021423000"/>
     </proto>
   </packet>
 </pdml>
