@@ -4,9 +4,10 @@
 TEST_CASES = $(wildcard tests/*/*.pdml)
 
 TSHARK_EXECUTABLE?=tshark
+TSHARK_ARGS?="-d udp.port==6881,bt-dht"
 
 check_output = @(echo -n "Processing $(notdir $1)" && cd $(dir $1) && \
-		$(TSHARK_EXECUTABLE) -T pdml -r $(subst .pdml,,$(notdir $1)) > $(notdir $2) 2>&1 && \
+		$(TSHARK_EXECUTABLE) $(TSHARK_ARGS) -T pdml -r $(subst .pdml,,$(notdir $1)) > $(notdir $2) 2>&1 && \
 		xsltproc filter.xsl $(notdir $2)  | diff $(notdir $1) - ) && echo " [OK]"
 
 all: test
