@@ -76,7 +76,7 @@
           <field name="dns.resp.name" showname="Name: www.google.com" size="2" pos="74" show="www.google.com" value="c00c"/>
           <field name="dns.resp.type" showname="Type: A (Host Address) (1)" size="2" pos="76" show="1" value="0001"/>
           <field name="dns.resp.class" showname="Class: IN (0x0001)" size="2" pos="78" show="0x00000001" value="0001"/>
-          <field name="dns.resp.ttl" showname="Time to live: 299" size="4" pos="80" show="299" value="0000012b"/>
+          <field name="dns.resp.ttl" showname="Time to live: 299 (4 minutes, 59 seconds)" size="4" pos="80" show="299" value="0000012b"/>
           <field name="dns.resp.len" showname="Data length: 4" size="2" pos="84" show="4" value="0004"/>
           <field name="dns.a" showname="Address: 172.217.16.164" size="4" pos="86" show="172.217.16.164" value="acd910a4"/>
         </field>
