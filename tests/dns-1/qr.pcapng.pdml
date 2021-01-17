@@ -43,8 +43,6 @@
   </packet>
   <packet>
     <proto name="dns" showname="Domain Name System (response)" size="59" pos="42">
-      <field name="dns.response_to" showname="Request In: 1" size="0" pos="42" show="1"/>
-      <field name="dns.time" showname="Time: 0.021423000 seconds" size="0" pos="42" show="0.021423000"/>
       <field name="dns.id" showname="Transaction ID: 0xe65d" size="2" pos="42" show="0x0000e65d" value="e65d"/>
       <field name="dns.flags" showname="Flags: 0x8180 Standard query response, No error" size="2" pos="44" show="0x00008180" value="8180">
         <field name="dns.flags.response" showname="1... .... .... .... = Response: Message is a response" size="2" pos="44" show="1" value="1" unmaskedvalue="8180"/>
@@ -76,7 +74,7 @@
           <field name="dns.resp.name" showname="Name: www.google.com" size="2" pos="74" show="www.google.com" value="c00c"/>
           <field name="dns.resp.type" showname="Type: A (Host Address) (1)" size="2" pos="76" show="1" value="0001"/>
           <field name="dns.resp.class" showname="Class: IN (0x0001)" size="2" pos="78" show="0x00000001" value="0001"/>
-          <field name="dns.resp.ttl" showname="Time to live: 299" size="4" pos="80" show="299" value="0000012b"/>
+          <field name="dns.resp.ttl" showname="Time to live: 299 (4 minutes, 59 seconds)" size="4" pos="80" show="299" value="0000012b"/>
           <field name="dns.resp.len" showname="Data length: 4" size="2" pos="84" show="4" value="0004"/>
           <field name="dns.a" showname="Address: 172.217.16.164" size="4" pos="86" show="172.217.16.164" value="acd910a4"/>
         </field>
@@ -95,6 +93,8 @@
           <field name="dns.resp.len" showname="Data length: 0" size="2" pos="99" show="0" value="0000"/>
         </field>
       </field>
+      <field name="dns.response_to" showname="Request In: 1" size="0" pos="42" show="1"/>
+      <field name="dns.time" showname="Time: 0.021423000 seconds" size="0" pos="42" show="0.021423000"/>
     </proto>
   </packet>
 </pdml>
