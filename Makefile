@@ -7,7 +7,7 @@ TSHARK_EXECUTABLE?=tshark
 
 check_output = @(echo -n "Processing $(notdir $1)" && cd $(dir $1) && \
 		$(TSHARK_EXECUTABLE) -T pdml -r $(subst .pdml,,$(notdir $1)) > $(notdir $2) 2>&1 && \
-		xsltproc filter.xsl $(notdir $2)  | diff $(notdir $1) - ) && echo " [OK]"
+		xsltproc filter.xsl $(notdir $2)  | diff -u $(notdir $1) - ) && echo " [OK]"
 
 all: test
 
