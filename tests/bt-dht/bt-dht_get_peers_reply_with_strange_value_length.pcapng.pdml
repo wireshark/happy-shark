@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<pdml>
+  <packet>
+    <proto name="bt-dht" showname="BitTorrent DHT Protocol" size="65" pos="28">
+      <field name="bt-dht.bencoded.dict_entry" showname="Response values: Dictionary..." size="57" pos="29" show="" value="">
+        <field name="bt-dht.bencoded.string" showname="Key: r" size="1" pos="31" show="r" value="72"/>
+        <field name="bt-dht.bencoded.dict" showname="Value: Dictionary..." size="54" pos="32" show="" value="">
+          <field name="bt-dht.bencoded.dict_entry" showname="id: 15280d5a8a61ce88e9cccf570bb6459b4d63dca1" size="27" pos="33" show="" value="">
+            <field name="bt-dht.bencoded.string" showname="Key: id" size="2" pos="35" show="id" value="6964"/>
+            <field name="bt-dht.bencoded.string" showname="Value: 15280d5a8a61ce88e9cccf570bb6459b4d63dca1" size="20" pos="40" show="15280d5a8a61ce88e9cccf570bb6459b4d63dca1" value="15280d5a8a61ce88e9cccf570bb6459b4d63dca1"/>
+          </field>
+          <field name="bt-dht.bencoded.dict_entry" showname="values: 0 peers" size="25" pos="60" show="" value="">
+            <field name="bt-dht.bencoded.string" showname="Key: values" size="6" pos="62" show="values" value="76616c756573"/>
+            <field name="bt-dht.peers" showname="Value: 0 peers" size="0" pos="68" show="" value="">
+              <field name="bt-dht.bencoded.list.terminator" showname="Terminator: e" size="1" pos="84" show="e" value="65"/>
+            </field>
+            <field name="bt-dht.truncated_data" showname="Truncated data: 7f0000031ecb7f0000041ecc" size="12" pos="72" show="7f:00:00:03:1e:cb:7f:00:00:04:1e:cc" value="7f0000031ecb7f0000041ecc"/>
+          </field>
+          <field name="bt-dht.bencoded.list.terminator" showname="Terminator: e" size="1" pos="85" show="e" value="65"/>
+        </field>
+      </field>
+      <field name="bt-dht.bencoded.dict_entry" showname="Message type: Response" size="6" pos="86" show="" value="">
+        <field name="bt-dht.bencoded.string" showname="Key: y" size="1" pos="88" show="y" value="79"/>
+        <field name="bt-dht.bencoded.string" showname="Value: r" size="1" pos="91" show="r" value="72"/>
+      </field>
+      <field name="bt-dht.bencoded.list.terminator" showname="Terminator: e" size="1" pos="92" show="e" value="65"/>
+    </proto>
+  </packet>
+</pdml>
